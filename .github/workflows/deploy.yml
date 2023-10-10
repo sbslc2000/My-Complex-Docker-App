@@ -1,0 +1,32 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+    workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build for testing
+        run: docker build -t peteseo/test-react-app -f ./frontend/Dockerfile.dev ./frontend
+      - name: Frontend Test
+        run: docker run -e CI=true peteseo/test-react-app npm test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker Login  # 도커 로그인 (push 하기 위해서)
+        uses: docker/login- action@f3364599c6aa293cdc2b8391b1b56d0c30e45c8a  # 이것도 액션을 가져다가 사용
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      - name: Build the Docker image
+        run : docker-compose build
+      - name: Push the Docker image
+        run : docker-compose push
