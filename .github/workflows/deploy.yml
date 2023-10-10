@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Docker Login  # 도커 로그인 (push 하기 위해서)
-        uses: docker/login- action@f3364599c6aa293cdc2b8391b1b56d0c30e45c8a  # 이것도 액션을 가져다가 사용
+        uses: docker/login-action@f3364599c6aa293cdc2b8391b1b56d0c30e45c8a  # 이것도 액션을 가져다가 사용
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
