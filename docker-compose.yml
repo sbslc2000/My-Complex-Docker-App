@@ -3,41 +3,35 @@ services:
 
   frontend:
     image: peteseo/complex-frontend
-    volumes:
-      - /app/node_modules
-      - ./frontend:/app
     container_name: app_frontend
     stdin_open: true
-    deploy:
-      resources:
-        limits:
-          memory: 128m
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 128m
 
 
   backend:
     image: peteseo/complex-backend
     container_name: app_backend
-    volumes:
-      - /app/node_modules
-      - ./backend:/app
-    environment:
-      MYSQL_HOST: ${ secrets.MYSQL_HOST}
-      MYSQL_USER: ${ secrets.MYSQL_USER }
-      MYSQL_PASSWORD: ${ secrets.MYSQL_PASSWORD }
-      MYSQL_DATABASE: ${ secrets.MYSQL_DATABASE }
-      MYSQL_PORT: ${ secrets.MYSQL_PORT }
-    deploy:
-      resources:
-        limits:
-          memory: 128m
+#    environment:
+#      MYSQL_HOST: ${ MYSQL_HOST}
+#      MYSQL_USER: ${ MYSQL_USER }
+#      MYSQL_PASSWORD: ${ MYSQL_PASSWORD }
+#      MYSQL_DATABASE: ${ MYSQL_DATABASE }
+#      MYSQL_PORT: ${ MYSQL_PORT }
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 128m
 
   nginx:
     restart: always
     container_name: proxy_nginx
     image: peteseo/complex-nginx
     ports:
-      - "8080:80"
-    deploy:
-      resources:
-        limits:
-          memory: 128m
+      - "80:80"
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 128m
