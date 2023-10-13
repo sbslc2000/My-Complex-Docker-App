@@ -1,29 +1,29 @@
 version: "3"
 services:
 
-  frontend:
-    image: peteseo/complex-frontend
-    container_name: app_frontend
-    stdin_open: true
+#  frontend:
+#    image: peteseo/complex-frontend
+#    container_name: app_frontend
+#    stdin_open: true
 #    deploy:
 #      resources:
 #        limits:
-#          memory: 128m
+#          memory: 690m
 
 
   backend:
     image: peteseo/complex-backend
     container_name: app_backend
 #    environment:
-#      MYSQL_HOST: ${ MYSQL_HOST}
+#      MYSQL_HOST: ${ MYSQL_HOST }
 #      MYSQL_USER: ${ MYSQL_USER }
 #      MYSQL_PASSWORD: ${ MYSQL_PASSWORD }
 #      MYSQL_DATABASE: ${ MYSQL_DATABASE }
-#      MYSQL_PORT: ${ MYSQL_PORT }
+##      MYSQL_PORT: ${ MYSQL_PORT }
 #    deploy:
 #      resources:
 #        limits:
-#          memory: 128m
+#          memory: 256m
 
   nginx:
     restart: always
